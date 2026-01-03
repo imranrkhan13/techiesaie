@@ -1,8 +1,10 @@
 import { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
 import { Mail, Phone, MapPin, Check, Calendar, ArrowRight } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
-export default function ContactPage({ setCurrentPage }) {
+export default function ContactPage() {
+    const navigate = useNavigate();
     const formRef = useRef();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitStatus, setSubmitStatus] = useState(null); 
@@ -106,7 +108,7 @@ export default function ContactPage({ setCurrentPage }) {
                             </div>
 
                             <button
-                                onClick={() => setCurrentPage('bookcall')}
+                                onClick={() => navigate('/book-call')}
                                 className="w-full bg-[#FF6B35] text-white px-6 py-4 rounded-lg font-bold hover:bg-[#FF8555] transition-all group"
                             >
                                 <span className="flex items-center justify-center gap-2">
