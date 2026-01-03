@@ -1,8 +1,14 @@
 import { Check } from "lucide-react";
+import { useParams, Link, useNavigate } from "react-router-dom";
 
-export default function ServiceDetail({ serviceId, setCurrentPage }) {
+export default function ServiceDetail() {
+    const { id: serviceId } = useParams();
+    const navigate = useNavigate();
+
     const servicesData = {
+        
         wordpress: {
+            id: 'wordpress',
             title: 'WordPress Development',
             description: 'Professional WordPress websites optimized for performance, SEO, and user experience.',
             features: [
@@ -71,12 +77,11 @@ export default function ServiceDetail({ serviceId, setCurrentPage }) {
             <div className="pt-20 min-h-screen flex items-center justify-center px-6">
                 <div className="text-center">
                     <p className="text-2xl mb-6">Service not found</p>
-                    <button
-                        onClick={() => setCurrentPage('services')}
-                        className="bg-white text-black px-8 py-4 text-sm font-bold tracking-wide"
-                    >
+                    <Link
+                        to= "/services"
+                        className="bg-white text-black px-8 py-4 text-sm font-bold tracking-wide">
                         BACK TO SERVICES
-                    </button>
+                    </Link>
                 </div>
             </div>
         );
@@ -86,7 +91,7 @@ export default function ServiceDetail({ serviceId, setCurrentPage }) {
         <div className="pt-20 min-h-screen px-6 lg:px-12 py-32 fade-in">
             <div className="max-w-5xl mx-auto">
                 <button
-                    onClick={() => setCurrentPage('services')}
+                    onClick={() => navigate('/services')}
                     className="text-gray-400 hover:text-white mb-12 flex items-center gap-2 text-sm font-bold tracking-wide mt-10"
                 >
                     ← BACK
@@ -114,7 +119,7 @@ export default function ServiceDetail({ serviceId, setCurrentPage }) {
                             <div className="text-6xl font-black">{service.pricing}</div>
                         </div>
                         <button
-                            onClick={() => setCurrentPage('book-call')}
+                            onClick={() => navigate('/book-call')}
                             className="bg-black text-white px-10 py-5 text-sm font-bold tracking-wide hover:bg-gray-900 transition-all"
                         >
                             BOOK CONSULTATION

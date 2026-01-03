@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 import { ArrowRight, ExternalLink, Code, Zap, Shield, Cog } from 'lucide-react';
 import * as THREE from 'three';
-
+import '../styles/global.css';
+import { useNavigate } from 'react-router-dom';
 const colors = {
     bg: '#0A0A0A',
     bgLight: '#141414',
@@ -11,35 +12,6 @@ const colors = {
     accentHover: '#FF8555',
 };
 
-const style = document.createElement('style');
-style.textContent = `
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-  * { font-family: 'Inter', sans-serif; margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: ${colors.bg}; color: ${colors.primary}; overflow-x: hidden; }
-  
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  
-  .fade-in { animation: fadeIn 0.8s ease-out forwards; }
-  
-  .text-gradient {
-    background: linear-gradient(135deg, #FFFFFF 0%, #A0A0A0 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  
-  .hover-lift {
-    transition: transform 0.3s ease;
-  }
-  
-  .hover-lift:hover {
-    transform: translateY(-8px);
-  }
-`;
-document.head.appendChild(style);
 function ThreeBackground() {
     const canvasRef = useRef(null);
 
@@ -340,7 +312,8 @@ function AnimatedWord() {
     );
 }
 
- export default function HomePage({ setCurrentPage }) {
+ export default function HomePage() {
+    const navigate  = useNavigate();
 
     const services = [
         {
@@ -388,7 +361,7 @@ function AnimatedWord() {
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4">
                                 <button
-                                    onClick={() => setCurrentPage('book-call')}
+                                    onClick={() => navigate('/book-call')}
                                     className="bg-white text-black px-10 py-5 text-sm font-bold tracking-wide hover:bg-gray-200 transition-all group"
                                 >
                                     <span className="flex items-center justify-center gap-3">
@@ -397,7 +370,7 @@ function AnimatedWord() {
                                     </span>
                                 </button>
                                 <button
-                                    onClick={() => setCurrentPage('templates')}
+                                    onClick={() => navigate('/templates')}
                                     className="border-2 border-white text-white px-10 py-5 text-sm font-bold tracking-wide hover:bg-white hover:text-black transition-all"
                                 >
                                     VIEW WORK
@@ -476,7 +449,7 @@ function AnimatedWord() {
                                     </p>
 
                                     <button
-                                        onClick={() => setCurrentPage('services')}
+                                        onClick={() => navigate('/services')}
                                         className="inline-flex items-center gap-2 text-sm font-bold tracking-wide text-gray-400 group-hover:text-[#FF6B35] transition-colors"
                                     >
                                         LEARN MORE

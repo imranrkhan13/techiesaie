@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import ScrollToTop from './components/scrolltotop';
+import ScrollToTop from './components/ScrollToTop';
 // Layout
 import Navbar from './components/navbar';
 import Footer from './components/footer';
@@ -23,7 +23,7 @@ export default function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/services" element={<ServicesPage />} />
-        <Route path="/services/:serviceId" element={<ServiceDetail />} />
+        <Route path="/services/:id" element={<ServiceDetail />} />
         <Route path="/templates" element={<TemplatesPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/book-call" element={<BookCallPage />} />

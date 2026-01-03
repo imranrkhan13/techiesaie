@@ -1,6 +1,10 @@
-import { useState, useEffect, useRef } from 'react';
-import { Menu, X, ArrowRight, ExternalLink, Github, Mail, Phone, MapPin, Check, Sparkles, Code, Zap, Shield, TrendingUp, Users, Award, Briefcase, Rocket, Building2, Cog } from 'lucide-react';
-export default function ServicesPage({ setCurrentPage }) {
+import { Github, Code, Briefcase, Rocket, Cog } from 'lucide-react';
+import ServiceDetail from './serviceDetail';
+import { useNavigate, Link } from "react-router-dom";
+
+export default function ServicesPage() {
+    const navigate = useNavigate();
+
     const services = [
         {
             id: 'wordpress',
@@ -56,8 +60,10 @@ export default function ServicesPage({ setCurrentPage }) {
                             <p className="text-gray-400 mb-6 text-lg">{service.description}</p>
                             <div className="flex items-center justify-between">
                                 <span className="text-2xl font-bold">{service.price}</span>
+
+
                                 <button
-                                    onClick={() => setCurrentPage(service.id)}
+                                    onClick={() => navigate(`/services/${service.id}`)}
                                     className="text-sm font-bold tracking-wide hover:text-[#FF6B35] transition-colors"
                                 >
                                     LEARN MORE →
@@ -69,7 +75,7 @@ export default function ServicesPage({ setCurrentPage }) {
 
                 <div className="mt-20 text-center">
                     <button
-                        onClick={() => setCurrentPage('book-call')}
+                        onClick={() => navigate('/book-call')}
                         className="bg-white text-black px-10 py-5 text-sm font-bold tracking-wide hover:bg-gray-200 transition-all"
                     >
                         SCHEDULE CONSULTATION

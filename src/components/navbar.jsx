@@ -4,7 +4,7 @@ import { Menu, X } from 'lucide-react';
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const location = useLocation(); // get current URL path
+  const location = useLocation(); 
 
   const navItems = [
     { name: 'Work', path: '/templates' },
