@@ -76,7 +76,7 @@ export default function ContactPage({ setCurrentPage }) {
                                 </div>
                                 <div>
                                     <div className="font-bold text-lg mb-1">PHONE</div>
-                                    <div className="text-gray-400">+91 XXXXX XXXXX</div>
+                                    <div className="text-gray-400">+91 7506190224</div>
                                 </div>
                             </div>
 
