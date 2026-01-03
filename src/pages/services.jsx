@@ -1,6 +1,5 @@
 import { Github, Code, Briefcase, Rocket, Cog } from 'lucide-react';
-import ServiceDetail from './serviceDetail';
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function ServicesPage() {
     const navigate = useNavigate();
