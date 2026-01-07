@@ -15,7 +15,7 @@ import BookCallPage from './components/bookcall';
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-[#0A0A0A] text-white">
+    <div className="min-h-screen bg-[#0A0A0A] text-white relative z-10">
       <ScrollToTop /> 
       <Navbar />
 
