@@ -363,7 +363,7 @@ export default function HomePage() {
 
                         <div className="space-y-4 sm:space-y-6">
                             {[
-                                { emoji: '🍔', name: 'FoodExpress', desc: 'Food ordering with real-time tracking', live: 'https://foodexpress-0v7b.onrender.com/' },
+                                { emoji: '🧣', name: 'Manucrafts', desc: 'Curated high-end leather goods. Built for the modern silhouette.', live: 'https://manucrafts.netlify.app/' },
                                 { emoji: '🌱', name: 'Career Garden', desc: 'Career management platform', live: 'https://career-garden.netlify.app/' },
                                 { emoji: '🎥', name: 'WikiReels', desc: 'Educational micro-content hub', live: 'https://wikireels.netlify.app/' }
                             ].map((project, i) => (

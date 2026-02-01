@@ -3,11 +3,11 @@ import { ExternalLink, ArrowRight } from "lucide-react";
 export default function TemplatesSection() {
     const templates = [
         {
-            name: 'FoodExpress',
-            category: 'Food Delivery',
-            image: '🍔',
-            live: 'https://foodexpress-0v7b.onrender.com/',
-            features: ['Real-time tracking', 'Payment integration', 'Admin dashboard']
+            name: 'Manucrafts',
+            category: 'Fashion Website',
+            image: '🧣',
+            live: 'https://manucrafts.netlify.app/',
+            features: ['Real-time real-time stock handling, image uploads,', 'Payment integration', 'Admin dashboard']
         },
         {
             name: 'Career Garden',
