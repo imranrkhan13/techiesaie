@@ -1,145 +1,149 @@
-import { ExternalLink, ArrowRight } from "lucide-react";
+import React, { useState } from "react";
+import { ExternalLink, ArrowRight, ShieldCheck, Globe, Activity, Code2 } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function TemplatesSection() {
-    const templates = [
+    const deployments = [
         {
             name: 'Manucrafts',
-            category: 'Fashion Website',
-            image: '🧣',
-            live: 'https://manucrafts.netlify.app/',
-            features: ['Real-time real-time stock handling, image uploads,', 'Payment integration', 'Admin dashboard']
+            category: 'E-Commerce Infrastructure',
+            url: 'https://manucrafts.netlify.app/',
+            desc: 'A full-stack commerce engine featuring real-time state management and automated inventory pipelines.',
+            tech: ['React', 'Node.js', 'Stripe'],
+            stats: { ping: '42ms', status: '200 OK', port: '443' }
         },
         {
             name: 'Career Garden',
-            category: 'Career Platform',
-            image: '🌱',
-            live: 'https://career-garden.netlify.app/',
-            features: ['Job management', 'User profiles', 'Analytics']
+            category: 'Data Ecosystem',
+            url: 'https://career-garden.netlify.app/',
+            desc: 'A systematic career management platform utilizing relational databases and complex user-permission logic.',
+            tech: ['Next.js', 'PostgreSQL', 'Tailwind'],
+            stats: { ping: '38ms', status: '200 OK', port: '3000' }
         },
         {
             name: 'WikiReels',
-            category: 'Educational',
-            image: '🎥',
-            live: 'https://wikireels.netlify.app/',
-            features: ['Video content', 'Interactive UI', 'Responsive design']
+            category: 'Media Distribution',
+            url: 'https://wikireels.netlify.app/',
+            desc: 'High-bandwidth video delivery system optimized for low-latency educational content streams.',
+            tech: ['Three.js', 'Firebase', 'AWS'],
+            stats: { ping: '55ms', status: '200 OK', port: '8080' }
         }
     ];
 
     return (
-        <div className="pt-20 min-h-screen px-4 sm:px-6 lg:px-12 py-16 sm:py-24 lg:py-32 fade-in relative">
-            {/* Background decoration */}
-            <div className="absolute top-1/4 right-0 w-[300px] sm:w-[400px] lg:w-[500px] h-[300px] sm:h-[400px] lg:h-[500px] bg-[#FF6B35]/5 rounded-full blur-3xl"></div>
-
-            <div className="max-w-7xl mx-auto relative z-10">
-                {/* Header */}
-                <div className="mb-12 sm:mb-16 lg:mb-20 mt-8 sm:mt-12 lg:mt-20">
-                    <div className="text-xs sm:text-sm font-bold tracking-widest text-[#FF6B35] mb-3 sm:mb-4">
-                        LIVE PROJECTS
+        <div className="pt-20 min-h-screen px-6 lg:px-20 py-32 bg-[#FFF5F0] text-[#4A3835] font-['Poppins']">
+            <div className="max-w-7xl mx-auto">
+                <header className="mb-32 border-b border-[#4A3835]/10 pb-12">
+                    <div className="flex justify-between items-end">
+                        <div>
+                            <span className="text-[10px] font-bold tracking-[0.4em] uppercase opacity-60 mb-6 block underline decoration-[#C97A63] underline-offset-8">Production Archive</span>
+                            <h1 className="text-6xl lg:text-8xl font-black uppercase leading-[0.9] tracking-tighter">
+                                Live <br />
+                                <span className="text-[#C97A63]">Deployments.</span>
+                            </h1>
+                        </div>
+                        <div className="hidden lg:block text-right font-mono text-[10px] opacity-40 leading-loose">
+                            PROTOCOL: HTTPS // SSL_ENABLED: TRUE<br />
+                            SERVER_LOC: GLOBAL_EDGE<br />
+                            ENCRYPTION: AES_256
+                        </div>
                     </div>
-                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black mb-4 sm:mb-6">
-                        Our Work
-                    </h1>
-                    <p className="text-base sm:text-lg lg:text-xl text-gray-400 max-w-3xl">
-                        Explore real projects we've built—fully functional, deployed, and making an impact.
-                    </p>
-                </div>
+                </header>
 
-                {/* Projects List */}
-                <div className="space-y-8 sm:space-y-10 lg:space-y-12">
-                    {templates.map((template, i) => (
-                        <div
+                <div className="space-y-64">
+                    {deployments.map((item, i) => (
+                        <motion.div
                             key={i}
-                            className="group relative bg-white/5 border border-white/10 hover:border-[#FF6B35]/50 transition-all duration-500 overflow-hidden rounded-xl"
+                            initial={{ opacity: 0, y: 50 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-100px" }}
+                            className="group"
                         >
-                            <div className="grid lg:grid-cols-2 gap-0">
-                                {/* Content Side */}
-                                <div className="p-6 sm:p-8 md:p-10 lg:p-16 flex flex-col justify-center order-2 lg:order-1">
-                                    <div className="text-xs sm:text-sm font-bold tracking-widest text-[#FF6B35] mb-3 sm:mb-4">
-                                        {template.category.toUpperCase()}
-                                    </div>
+                            <div className="grid lg:grid-cols-12 gap-12 items-start">
 
-                                    <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black mb-4 sm:mb-6 group-hover:text-[#FF6B35] transition-colors">
-                                        {template.name}
-                                    </h3>
+                                {/* 1. INTERACTIVE BROWSER WINDOW */}
+                                <div className="lg:col-span-8 order-2 lg:order-1">
+                                    <div className="relative group/browser">
+                                        {/* Browser Toolbar */}
+                                        <div className="bg-[#4A3835] rounded-t-xl p-4 flex items-center justify-between shadow-2xl">
+                                            <div className="flex gap-2">
+                                                <div className="w-3 h-3 rounded-full bg-[#C97A63]" />
+                                                <div className="w-3 h-3 rounded-full bg-[#C97A63]/40" />
+                                                <div className="w-3 h-3 rounded-full bg-[#C97A63]/20" />
+                                            </div>
+                                            <div className="bg-white/10 rounded-md px-4 py-1 flex items-center gap-3 w-1/2">
+                                                <ShieldCheck size={12} className="text-[#C97A63]" />
+                                                <span className="text-[10px] font-mono text-white/60 truncate">{item.url}</span>
+                                            </div>
+                                            <div className="flex gap-4">
+                                                <Activity size={14} className="text-white/40" />
+                                            </div>
+                                        </div>
 
-                                    <ul className="space-y-2 sm:space-y-3 mb-6 sm:mb-8">
-                                        {template.features.map((feature, idx) => (
-                                            <li key={idx} className="flex items-center gap-2 sm:gap-3 text-sm sm:text-base text-gray-400">
-                                                <div className="w-1.5 h-1.5 rounded-full bg-[#FF6B35] flex-shrink-0"></div>
-                                                {feature}
-                                            </li>
-                                        ))}
-                                    </ul>
+                                        {/* Live Iframe Container */}
+                                        <div className="relative aspect-[16/10] bg-white border-x-2 border-b-2 border-[#4A3835]/5 shadow-2xl overflow-hidden">
+                                            <iframe
+                                                src={item.url}
+                                                title={item.name}
+                                                className="w-full h-full border-none pointer-events-none group-hover/browser:pointer-events-auto transition-all"
+                                                loading="lazy"
+                                            />
 
-                                    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-                                        <a
-                                            href={template.live}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="inline-flex items-center justify-center gap-2 bg-[#FF6B35] text-white px-6 sm:px-8 py-3 sm:py-4 text-xs sm:text-sm font-bold tracking-wide hover:bg-[#FF8555] transition-all group/btn rounded-lg"
-                                        >
-                                            VIEW LIVE SITE
-                                            <ExternalLink className="w-4 h-4 group-hover/btn:rotate-12 transition-transform" />
-                                        </a>
-                                        <button className="inline-flex items-center justify-center gap-2 border-2 border-white/20 text-white px-6 sm:px-8 py-3 sm:py-4 text-xs sm:text-sm font-bold tracking-wide hover:border-[#FF6B35] hover:text-[#FF6B35] transition-all rounded-lg">
-                                            CASE STUDY
-                                            <ArrowRight className="w-4 h-4" />
-                                        </button>
+                                            {/* "Click to Interact" Overlay */}
+                                            <div className="absolute inset-0 bg-[#4A3835]/40 backdrop-blur-[2px] flex items-center justify-center opacity-100 group-hover/browser:opacity-0 pointer-events-none transition-opacity duration-500">
+                                                <div className="px-6 py-3 bg-white text-[#4A3835] text-[10px] font-bold tracking-[0.2em] uppercase rounded-full shadow-xl flex items-center gap-3">
+                                                    <Globe size={14} className="animate-spin-slow" />
+                                                    Hover to explore live app
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
-                                {/* Preview Side */}
-                                <div className="relative bg-gradient-to-br from-white/10 to-white/5 p-6 sm:p-8 md:p-10 lg:p-16 flex items-center justify-center min-h-[300px] sm:min-h-[350px] md:min-h-[400px] lg:min-h-[500px] order-1 lg:order-2">
-                                    {/* Browser mockup */}
-                                    <div className="relative w-full max-w-sm md:max-w-md">
-                                        {/* Browser bar */}
-                                        <div className="bg-white/10 rounded-t-lg sm:rounded-t-xl p-2 sm:p-3 flex items-center gap-2">
-                                            <div className="flex gap-1 sm:gap-1.5">
-                                                <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-red-500"></div>
-                                                <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-yellow-500"></div>
-                                                <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-green-500"></div>
-                                            </div>
-                                            <div className="flex-1 bg-white/5 rounded px-2 sm:px-3 py-1 text-[10px] sm:text-xs text-gray-500 truncate">
-                                                {template.live}
+                                {/* 2. SYSTEM SPECIFICATIONS */}
+                                <div className="lg:col-span-4 order-1 lg:order-2 space-y-8">
+                                    <div>
+                                        <h3 className="text-4xl font-black uppercase tracking-tighter mb-2 group-hover:text-[#C97A63] transition-colors">
+                                            {item.name}
+                                        </h3>
+                                        <span className="text-[10px] font-bold tracking-widest uppercase text-[#C97A63]">{item.category}</span>
+                                    </div>
+
+                                    <p className="text-sm opacity-70 leading-relaxed font-medium">
+                                        {item.desc}
+                                    </p>
+
+                                    {/* Tech Stack Grid */}
+                                    <div className="grid grid-cols-2 gap-4">
+                                        <div className="border border-[#4A3835]/10 p-4 rounded-lg bg-white">
+                                            <Code2 size={16} className="mb-2 text-[#C97A63]" />
+                                            <div className="flex flex-wrap gap-1">
+                                                {item.tech.map(t => <span key={t} className="text-[9px] font-bold uppercase opacity-60">{t} •</span>)}
                                             </div>
                                         </div>
-
-                                        {/* Preview content */}
-                                        <div className="bg-white/5 rounded-b-lg sm:rounded-b-xl p-6 sm:p-8 border-2 border-white/10 group-hover:border-[#FF6B35]/30 transition-colors">
-                                            <div className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-500">
-                                                {template.image}
-                                            </div>
-                                            <div className="space-y-2 sm:space-y-3">
-                                                <div className="h-2 sm:h-3 bg-white/10 rounded w-3/4"></div>
-                                                <div className="h-2 sm:h-3 bg-white/10 rounded w-full"></div>
-                                                <div className="h-2 sm:h-3 bg-white/10 rounded w-2/3"></div>
-                                            </div>
+                                        <div className="border border-[#4A3835]/10 p-4 rounded-lg bg-white">
+                                            <Activity size={16} className="mb-2 text-[#C97A63]" />
+                                            <span className="text-[9px] font-bold uppercase block opacity-60">Status: {item.stats.status}</span>
+                                            <span className="text-[9px] font-bold uppercase block opacity-60">Ping: {item.stats.ping}</span>
                                         </div>
                                     </div>
 
-                                    {/* Decorative glow */}
-                                    <div className="absolute inset-0 bg-gradient-to-br from-[#FF6B35]/0 to-[#FF6B35]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                                    <a
+                                        href={item.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="group/link inline-flex items-center gap-4 text-[11px] font-bold tracking-[0.3em] uppercase"
+                                    >
+                                        Launch in Fullscreen
+                                        <div className="w-10 h-10 rounded-full border border-[#4A3835]/20 flex items-center justify-center group-hover/link:bg-[#4A3835] group-hover/link:text-white transition-all">
+                                            <ExternalLink size={14} />
+                                        </div>
+                                    </a>
                                 </div>
                             </div>
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
-
-                {/* CTA - Optional */}
-                {/* <div className="mt-12 sm:mt-16 lg:mt-20 text-center bg-white/5 border border-white/10 p-8 sm:p-12 lg:p-16 rounded-xl sm:rounded-2xl">
-                    <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4">
-                        Ready to start your project?
-                    </h3>
-                    <p className="text-sm sm:text-base text-gray-400 mb-6 sm:mb-8 max-w-2xl mx-auto">
-                        We build custom solutions tailored to your specific needs and goals.
-                    </p>
-                    <button className="bg-[#FF6B35] text-white px-8 sm:px-10 lg:px-12 py-4 sm:py-5 text-xs sm:text-sm font-bold tracking-wide hover:bg-[#FF8555] transition-all group rounded-lg">
-                        <span className="flex items-center justify-center gap-2 sm:gap-3">
-                            START YOUR PROJECT
-                            <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
-                        </span>
-                    </button>
-                </div> */}
             </div>
         </div>
     );

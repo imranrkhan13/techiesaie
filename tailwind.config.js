@@ -1,20 +1,21 @@
 /** @type {import('tailwindcss').Config} */
-export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,jsx}"
-  ],
+// tailwind.config.js
+module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "#2C344C",
-        accent: "#BE9464",
-        soft: "#B4C9EA"
+        peach: {
+          bg: '#FFF5F0',
+          bgLight: '#FFF7F2',
+          text: '#4A3835',
+          accent: '#C97A63',
+          gradStart: '#FFEBE3',
+          gradEnd: '#FFE0D4',
+        }
       },
       fontFamily: {
-        poppins: ["Poppins", "sans-serif"]
-      }
-    }
+        poppins: ['Poppins', 'sans-serif'],
+      },
+    },
   },
-  plugins: [],
-};
+}
