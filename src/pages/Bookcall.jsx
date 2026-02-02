@@ -110,11 +110,38 @@ export default function ContactPage() {
                     <div className="lg:col-span-7 bg-white p-10 lg:p-16 border border-[#4A3835]/5 shadow-sm">
                         <h3 className="text-3xl font-black uppercase tracking-tighter mb-10">Project Inquiry</h3>
 
-                        {submitStatus === 'success' && (
-                            <div className="mb-10 p-5 bg-[#C97A63]/10 border border-[#C97A63]/20 text-[#C97A63] text-sm font-bold flex items-center gap-3">
-                                <Check size={18} /> MESSAGE TRANSMITTED SUCCESSFULLY
-                            </div>
-                        )}
+                        {/* Status Messages */}
+                        <AnimatePresence>
+                            {submitStatus === 'success' && (
+                                <motion.div
+                                    initial={{ opacity: 0, height: 0 }}
+                                    animate={{ opacity: 1, height: 'auto' }}
+                                    exit={{ opacity: 0, height: 0 }}
+                                    className="mb-10 p-5 bg-[#C97A63]/10 border border-[#C97A63]/20 text-[#C97A63] text-sm font-bold flex items-center gap-3"
+                                >
+                                    <Check size={18} /> MESSAGE TRANSMITTED SUCCESSFULLY
+                                </motion.div>
+                            )}
+
+                            {submitStatus === 'error' && (
+                                <motion.div
+                                    initial={{ opacity: 0, height: 0 }}
+                                    animate={{ opacity: 1, height: 'auto' }}
+                                    exit={{ opacity: 0, height: 0 }}
+                                    className="mb-10 p-5 bg-red-50 border border-red-200 text-red-600 text-sm font-bold flex flex-col gap-1"
+                                >
+                                    <div className="flex items-center gap-3">
+                                        <span className="text-lg">×</span> TRANSMISSION FAILED
+                                    </div>
+                                    <p className="text-[11px] opacity-80 ml-7 uppercase tracking-tight">
+                                        Please email us directly at:
+                                        <a href="mailto:muhammadimrank034@gmail.com" className="underline ml-1">
+                                            muhammadimrank034@gmail.com
+                                        </a>
+                                    </p>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
 
                         {/* Note the attributes: 
                             - data-netlify="true"
