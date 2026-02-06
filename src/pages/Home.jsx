@@ -207,9 +207,6 @@ function WordSwitcher() {
                 >
                     {adjectives[index]}
                 </motion.span>
-
-
-
             </AnimatePresence>
         </span>
     );
@@ -239,7 +236,7 @@ export default function App() {
         return () => clearInterval(timer); // Cleanup on unmount
     }, [nextCard]);
     return (
-        <div className="bg-[#FFF5F0] text-[#4A3835] font-sans selection:bg-[#C97A63] selection:text-white">
+        <div className="bg-[#fff] text-[#4A3835] font-sans selection:bg-[#C97A63] selection:text-white">
 
             {/* --- HERO SECTION --- */}
             <section className="relative min-h-screen flex items-center overflow-hidden px-6 lg:px-20">
@@ -359,7 +356,7 @@ export default function App() {
             </section>
 
             {/* --- CORE CAPABILITIES (Informative Section) --- */}
-            <section className="py-24 px-6 lg:px-20 bg-white relative overflow-hidden">
+            <section className="py-24 px-6 lg:px-20 bg-[#FFF5F0] relative overflow-hidden">
                 <div className="max-w-5xl mx-auto relative z-10">
 
                     {/* --- REFINED TECHNICAL HEADER --- */}

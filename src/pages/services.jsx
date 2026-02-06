@@ -15,6 +15,7 @@ export default function ServicesPage() {
         accent: '#C97A63',
         gradStart: '#FFEBE3',
         gradEnd: '#FFE0D4',
+        bgalt: '#fff',
     };
 
     const services = [
@@ -64,10 +65,10 @@ export default function ServicesPage() {
     };
 
     return (
-        <div className="pt-20 min-h-screen font-['Poppins'] overflow-x-hidden selection:bg-[#C97A63] selection:text-white" style={{ backgroundColor: colors.bg, color: colors.text }}>
+        <div className="pt-20 min-h-screen font-['Poppins'] overflow-x-hidden selection:bg-[#C97A63] selection:text-white" style={{ color: colors.text }}>
 
             {/* 1. HERO SECTION */}
-            <section className="relative py-32 px-6 lg:px-20 border-b border-[#4A3835]/10">
+            <section className="relative py-32 px-6 lg:px-20 border-b border-[#4A3835]/10" style={{ backgroundColor: colors.bgalt }}>
                 <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
                     <motion.div
                         initial={{ opacity: 0, x: -30 }}
@@ -117,7 +118,7 @@ export default function ServicesPage() {
             </section>
 
             {/* 2. SERVICES LIST */}
-            <section className="py-32 px-6 lg:px-20">
+            <section className="py-32 px-6 lg:px-20" style={{ backgroundColor: colors.bg }}>
                 <motion.div
                     variants={containerVariants}
                     initial="hidden"

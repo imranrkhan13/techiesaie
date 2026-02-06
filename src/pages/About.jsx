@@ -15,6 +15,7 @@ export default function AboutSection() {
         text: '#4A3835',
         accent: '#C97A63',
         bgLight: '#FFF7F2',
+        bgalt: '#fff',
     };
 
     const process = [
@@ -45,10 +46,10 @@ export default function AboutSection() {
     ];
 
     return (
-        <div className="pt-20 min-h-screen selection:bg-[#C97A63] selection:text-white" style={{ backgroundColor: colors.bg, color: colors.text }}>
+        <div className="pt-20 min-h-screen selection:bg-[#C97A63] selection:text-white" style={{ color: colors.text }}>
 
             {/* 1. HERO NARRATIVE WITH STAGGERED TEXT */}
-            <section className="px-6 lg:px-20 py-32 max-w-7xl mx-auto">
+            <section className="px-6 lg:px-20 py-32 mx-auto" style={{ backgroundColor: colors.bgalt}}>
                 <div className="grid lg:grid-cols-2 gap-16 items-center">
                     <motion.div
                         initial={{ opacity: 0, y: 40 }}
@@ -84,7 +85,7 @@ export default function AboutSection() {
             </section>
 
             {/* 2. INTERACTIVE METHODOLOGY */}
-            <section className="px-6 lg:px-20 py-32 bg-[#4A3835]/[0.02] border-y border-[#4A3835]/5">
+            <section className="px-6 lg:px-20 py-32 bg-[#4A3835]/[0.02] border-y border-[#4A3835]/5" style={{ backgroundColor: colors.bg }}>
                 <div className="max-w-7xl mx-auto">
                     <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
                         <div>
@@ -122,7 +123,7 @@ export default function AboutSection() {
             </section>
 
             {/* 3. PORTFOLIO NARRATIVE */}
-            <section className="px-6 lg:px-20 py-40 max-w-7xl mx-auto">
+            <section className="px-6 lg:px-20 py-40  mx-auto" style={{ backgroundColor: colors.bgalt }}>
                 <div className="grid lg:grid-cols-2 gap-24 items-center">
                     <div className="grid grid-cols-2 gap-6 relative">
                         {/* Decorative floating element */}
@@ -169,7 +170,7 @@ export default function AboutSection() {
             </section>
 
             {/* 4. STATISTICS - THE "NUMBERS" BENTO BOX */}
-            <section className="px-6 lg:px-20 pb-32 max-w-7xl mx-auto">
+            <section className="px-6 lg:px-20 pb-32 pt-20 mx-auto" style={{ backgroundColor: colors.bg }}>
                 <div className="bg-[#4A3835] rounded-3xl p-12 lg:p-20 overflow-hidden relative">
                     {/* Background decoration */}
                     <div className="absolute top-0 right-0 w-96 h-96 bg-[#C97A63]/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2" />
