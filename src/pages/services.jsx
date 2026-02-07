@@ -22,32 +22,47 @@ export default function ServicesPage() {
         {
             id: 'custom',
             icon: <Code className="w-12 h-12" />,
-            title: 'Full-Stack Ecosystems',
-            subtitle: 'Enterprise-Grade Applications',
-            description: 'Scalable React & Next.js architectures built for high-concurrency and complex business logic.',
+            title: 'Custom Software Development',
+            subtitle: 'Web Platforms Built to Scale',
+            description:
+                'We build custom web platforms that grow with your business — fast, secure, and designed to handle real customers, payments, and operations without breaking.',
             tech: ['React', 'TypeScript', 'Node.js', 'PostgreSQL'],
-            features: ['Microservices Architecture', 'Real-time Data Sync', 'Custom API Design'],
-            price: 'Starting $5,000',
+            features: [
+                'Built to handle growth and traffic',
+                'Fast, secure, and reliable',
+                'Tailored exactly to your business needs'
+            ],
+            price: 'Starting at $5,000',
         },
         {
             id: 'automation',
             icon: <Cog className="w-12 h-12" />,
-            title: 'Intelligent Workflows',
-            subtitle: 'AI & Process Automation',
-            description: 'Custom-built automation engines that replace manual labor with precision-engineered scripts.',
+            title: 'Business Automation',
+            subtitle: 'Save Time. Reduce Costs.',
+            description:
+                'We automate repetitive tasks across your tools so your team spends less time on manual work and more time growing the business.',
             tech: ['Python', 'OpenAI SDK', 'n8n', 'Zapier'],
-            features: ['AI Model Integration', 'Webhooks & ETL', 'CRM Synchronization'],
-            price: 'Starting $1,500',
+            features: [
+                'Automated data entry and reporting',
+                'AI-powered workflows',
+                'Seamless tool integrations'
+            ],
+            price: 'Starting at $1,500',
         },
         {
             id: 'wordpress',
             icon: <Briefcase className="w-12 h-12" />,
-            title: 'High-Perf CMS',
-            subtitle: 'Headless & Classic WP',
-            description: 'SEO-optimized WordPress engines stripped of bloat and hardened for maximum security.',
+            title: 'Professional WordPress Websites',
+            subtitle: 'Fast, Secure & Search-Friendly',
+            description:
+                'Clean, high-performing WordPress websites that load fast, rank better on Google, and are easy for your team to manage.',
             tech: ['PHP', 'MySQL', 'Elementor', 'REST API'],
-            features: ['Custom Theme Hooks', 'Lighthouse Optimization', 'Bulletproof Security'],
-            price: 'Starting $2,500',
+            features: [
+                'Fast-loading pages',
+                'SEO-ready setup',
+                'Strong security and easy maintenance'
+            ],
+            price: 'Starting at $2,500',
         }
     ];
 
@@ -81,7 +96,7 @@ export default function ServicesPage() {
                         </div>
                         <h1 className="text-6xl lg:text-8xl font-black uppercase tracking-tighter leading-[0.85] mb-8">
                             High-Load <br />
-                            <span className="opacity-40">Engineering.</span>
+                            <span  style={{ color: colors.accent }}>Engineering.</span>
                         </h1>
                         <p className="text-lg max-w-md leading-relaxed opacity-80 mb-10">
                             We don't just "make websites." We engineer high-performance digital infrastructure designed to scale.

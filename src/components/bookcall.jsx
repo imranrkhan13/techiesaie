@@ -1,103 +1,150 @@
-import { useRef, useState } from 'react';
-import { motion } from 'framer-motion';
-import { ArrowUpRight, Calendar, Mail, Phone, Sparkles, Send } from 'lucide-react';
+import { useRef, useState, useEffect } from 'react';
+import { Send, Sparkles, ArrowUpRight, Fingerprint, Zap } from 'lucide-react';
+import Cal, { getCalApi } from "@calcom/embed-react";
 
 export default function ContactPage() {
+    const formRef = useRef();
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [focusedField, setFocusedField] = useState(null);
+
+    useEffect(() => {
+        (async function () {
+            const cal = await getCalApi({ "namespace": "30min" });
+            cal("ui", {
+                "theme": "light",
+                "cssVarsPerTheme": { "light": { "cal-brand": "#C97A63" } },
+                "hideEventTypeDetails": true,
+                "layout": "month_view"
+            });
+        })();
+    }, []);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+        setTimeout(() => setIsSubmitting(false), 2000);
+    };
+
     return (
-        <div className="pt-24 min-h-screen bg-[#FFF5F0] text-[#4A3835] font-['Poppins'] selection:bg-[#C97A63] selection:text-white overflow-hidden">
+        <div className="min-h-screen w-full bg-[#FAF5F0] text-[#4A3835] font-['Poppins'] p-4 md:p-10 lg:pt-32">
+            <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-6 items-start">
 
-            <div className="max-w-7xl mx-auto px-6 lg:px-20">
-                {/* 1. SHORT & PUNCHY HEADER */}
-                <header className="mb-16">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="flex items-center gap-3 mb-4"
-                    >
-                        <span className="w-8 h-[1px] bg-[#C97A63]"></span>
-                        <span className="text-[10px] font-bold tracking-[0.5em] uppercase text-[#C97A63]">Ready to Start?</span>
-                    </motion.div>
+                {/* LEFT: THE INTERACTIVE ANIMATED FORM CARD */}
+                <section className="w-full lg:w-[400px] shrink-0 lg:sticky lg:top-32">
+                    <div className={`relative transition-all duration-500 rounded-[2.5rem] p-1 shadow-2xl ${focusedField ? 'bg-gradient-to-br from-[#C97A63] to-[#4A3835]' : 'bg-transparent'}`}>
+                        <div className="bg-[#1A1615] rounded-[2.4rem] p-10 text-white relative overflow-hidden">
 
-                    <motion.h1
-                        initial={{ opacity: 0, x: -30 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.2 }}
-                        className="text-6xl lg:text-8xl font-black uppercase tracking-tighter leading-[0.9]"
-                    >
-                        Build Your <br />
-                        <span className="text-[#C97A63] italic font-light">Digital Edge.</span>
-                    </motion.h1>
-                </header>
+                            {/* Animated Background Element */}
+                            <div className={`absolute top-0 right-0 w-32 h-32 bg-[#C97A63] rounded-full blur-[60px] transition-opacity duration-700 ${focusedField ? 'opacity-30' : 'opacity-10'}`} />
 
-                <div className="grid lg:grid-cols-12 gap-12 items-start">
+                            {/* Scanning Light Effect */}
+                            <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#C97A63]/40 to-transparent animate-scan" />
 
-                    {/* 2. THE FORM - MOVED UP & PROMINENT */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 40 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.4 }}
-                        className="lg:col-span-7 bg-white rounded-[2.5rem] p-10 lg:p-16 shadow-[0_50px_100px_rgba(74,56,53,0.05)] border border-[#4A3835]/5"
-                    >
-                        <form className="space-y-10">
-                            <div className="grid md:grid-cols-2 gap-10">
-                                <div className="group relative border-b border-[#4A3835]/10 py-2 focus-within:border-[#C97A63] transition-all">
-                                    <p className="text-[9px] font-black uppercase tracking-widest text-[#C97A63] mb-1">Full Name</p>
-                                    <input type="text" placeholder="John Doe" className="w-full bg-transparent outline-none font-bold text-lg placeholder:opacity-20" />
+                            <header className="mb-10 relative z-10">
+                                <div className="flex items-center gap-3 mb-4">
+                                    <div className={`h-[2px] bg-[#C97A63] transition-all duration-500 ${focusedField ? 'w-12' : 'w-6'}`} />
+                                    <Fingerprint size={18} className={`transition-all duration-500 ${focusedField ? 'text-[#C97A63] opacity-100' : 'text-white/20'}`} />
                                 </div>
-                                <div className="group relative border-b border-[#4A3835]/10 py-2 focus-within:border-[#C97A63] transition-all">
-                                    <p className="text-[9px] font-black uppercase tracking-widest text-[#C97A63] mb-1">Email Address</p>
-                                    <input type="email" placeholder="john@agency.com" className="w-full bg-transparent outline-none font-bold text-lg placeholder:opacity-20" />
+                                <h1 className="text-4xl font-black tracking-tighter leading-none mb-2">
+                                    BUILD <br />
+                                    <span className="text-[#C97A63] italic font-light lowercase">your edge.</span>
+                                </h1>
+                                <p className="text-[9px] font-bold tracking-[0.4em] uppercase text-white/30">Secure Transmission</p>
+                            </header>
+
+                            <form ref={formRef} onSubmit={handleSubmit} className="space-y-8 relative z-10">
+                                <div className="space-y-7">
+                                    {/* Name Input */}
+                                    <div className="relative group">
+                                        <input
+                                            required type="text" id="name" placeholder=" "
+                                            onFocus={() => setFocusedField('name')}
+                                            onBlur={() => setFocusedField(null)}
+                                            className="peer w-full bg-transparent border-b border-white/10 py-2 outline-none text-sm transition-all focus:border-[#C97A63]"
+                                        />
+                                        <label htmlFor="name" className="absolute left-0 top-2 text-white/20 text-xs uppercase tracking-widest transition-all peer-focus:-top-4 peer-focus:text-[10px] peer-focus:text-[#C97A63] peer-focus:font-bold peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-[10px]">
+                                            Full Name
+                                        </label>
+                                        <div className="absolute bottom-0 left-0 h-[1px] bg-[#C97A63] w-0 peer-focus:w-full transition-all duration-500" />
+                                    </div>
+
+                                    {/* Email Input */}
+                                    <div className="relative group">
+                                        <input
+                                            required type="email" id="email" placeholder=" "
+                                            onFocus={() => setFocusedField('email')}
+                                            onBlur={() => setFocusedField(null)}
+                                            className="peer w-full bg-transparent border-b border-white/10 py-2 outline-none text-sm transition-all focus:border-[#C97A63]"
+                                        />
+                                        <label htmlFor="email" className="absolute left-0 top-2 text-white/20 text-xs uppercase tracking-widest transition-all peer-focus:-top-4 peer-focus:text-[10px] peer-focus:text-[#C97A63] peer-focus:font-bold peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-[10px]">
+                                            Email Address
+                                        </label>
+                                        <div className="absolute bottom-0 left-0 h-[1px] bg-[#C97A63] w-0 peer-focus:w-full transition-all duration-500" />
+                                    </div>
+
+                                    {/* Message Input */}
+                                    <div className="relative group">
+                                        <textarea
+                                            required rows="2" id="msg" placeholder=" "
+                                            onFocus={() => setFocusedField('msg')}
+                                            onBlur={() => setFocusedField(null)}
+                                            className="peer w-full bg-transparent border-b border-white/10 py-2 outline-none text-sm transition-all focus:border-[#C97A63] resize-none"
+                                        />
+                                        <label htmlFor="msg" className="absolute left-0 top-2 text-white/20 text-xs uppercase tracking-widest transition-all peer-focus:-top-4 peer-focus:text-[10px] peer-focus:text-[#C97A63] peer-focus:font-bold peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-[10px]">
+                                            Project Brief
+                                        </label>
+                                        <div className="absolute bottom-0 left-0 h-[1px] bg-[#C97A63] w-0 peer-focus:w-full transition-all duration-500" />
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div className="group relative border-b border-[#4A3835]/10 py-2 focus-within:border-[#C97A63] transition-all">
-                                <p className="text-[9px] font-black uppercase tracking-widest text-[#C97A63] mb-1">Your Vision</p>
-                                <textarea rows="3" placeholder="Briefly describe your project..." className="w-full bg-transparent outline-none font-bold text-lg placeholder:opacity-20 resize-none" />
-                            </div>
-
-                            <button className="group relative w-full overflow-hidden bg-[#4A3835] py-6 rounded-2xl transition-all duration-500">
-                                <span className="relative z-10 font-bold uppercase tracking-[0.4em] text-xs text-white flex items-center justify-center gap-4 group-hover:gap-6 transition-all">
-                                    Send Message <Send size={16} />
-                                </span>
-                                <div className="absolute inset-0 bg-[#C97A63] translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500 ease-out" />
-                            </button>
-                        </form>
-                    </motion.div>
-
-                    {/* 3. SIDE INFO - COMPACT & CLEAN */}
-                    <div className="lg:col-span-5 lg:pl-10 space-y-10">
-                        <div className="space-y-8">
-                            <motion.div whileHover={{ x: 10 }} className="cursor-pointer group">
-                                <p className="text-[10px] font-bold tracking-[0.3em] uppercase opacity-40 mb-2">Inquiries</p>
-                                <p className="text-xl font-bold group-hover:text-[#C97A63] transition-colors">muhammadimrank034@gmail.com</p>
-                            </motion.div>
-
-                            <motion.div whileHover={{ x: 10 }} className="cursor-pointer group">
-                                <p className="text-[10px] font-bold tracking-[0.3em] uppercase opacity-40 mb-2">Direct Line</p>
-                                <p className="text-xl font-bold group-hover:text-[#C97A63] transition-colors">+91 7506190224</p>
-                            </motion.div>
-                        </div>
-
-                        {/* HIGH-CONTRAST CALENDAR CTA */}
-                        <motion.div
-                            whileHover={{ scale: 1.02 }}
-                            className="bg-[#C97A63] rounded-[2rem] p-10 text-white shadow-xl shadow-[#C97A63]/20"
-                        >
-                            <h3 className="text-2xl font-black uppercase leading-tight mb-4">Prefer a <br />Strategy Call?</h3>
-                            <p className="text-sm opacity-90 mb-8 font-medium">Book 15 mins to discuss architecture and pricing directly.</p>
-                            <button className="w-full bg-white text-[#C97A63] py-4 rounded-xl font-black uppercase text-[10px] tracking-widest hover:bg-[#4A3835] hover:text-white transition-all flex items-center justify-center gap-3">
-                                <Calendar size={16} /> Schedule Now
-                            </button>
-                        </motion.div>
-
-                        <div className="pt-4 flex items-center gap-4 opacity-20">
-                            <Sparkles size={20} />
-                            <p className="text-[10px] font-bold tracking-[0.2em] uppercase">Average response: 4 Hours</p>
+                                <button className={`group relative w-full rounded-2xl py-5 transition-all duration-500 overflow-hidden shadow-xl
+                                    ${isSubmitting ? 'bg-[#C97A63]' : 'bg-white hover:bg-[#C97A63]'}`}>
+                                    <span className={`relative z-10 text-[10px] font-black uppercase tracking-[0.3em] flex items-center justify-center gap-3 transition-colors duration-300
+                                        ${isSubmitting ? 'text-white' : 'text-[#1A1615] group-hover:text-white'}`}>
+                                        {isSubmitting ? "TRANSMITTING..." : "INITIALIZE SYNC"}
+                                        <Zap size={14} className={`${isSubmitting ? 'animate-pulse' : 'group-hover:rotate-12 transition-transform'}`} fill="currentColor" />
+                                    </span>
+                                </button>
+                            </form>
                         </div>
                     </div>
+                </section>
 
-                </div>
+                {/* RIGHT: CALENDAR (UNCHANGED) */}
+                <section className="flex-1 w-full bg-white rounded-[2.5rem] shadow-sm border border-[#4A3835]/5 overflow-hidden">
+                    <div className="px-8 py-6 border-b border-[#4A3835]/5 flex items-center justify-between bg-white/50 backdrop-blur-sm">
+                        <div className="flex items-center gap-3 text-[10px] font-black uppercase tracking-widest text-[#4A3835]">
+                            <div className="w-1.5 h-1.5 rounded-full bg-[#C97A63] animate-pulse" />
+                            Schedule a Call
+                        </div>
+                        <Sparkles size={16} className="text-[#C97A63] opacity-30" />
+                    </div>
+                    <div className="h-[600px] overflow-y-auto scrollbar-hide">
+                        <div className="p-2 md:p-6">
+                            <Cal
+                                namespace="30min"
+                                calLink="imran-khan-aywnsj/30min"
+                                style={{ width: "100%", height: "100%" }}
+                                config={{ "layout": "month_view", "useSlotsViewOnSmallScreen": "true", "theme": "light" }}
+                            />
+                        </div>
+                    </div>
+                </section>
             </div>
+
+            <style jsx global>{`
+            
+                @keyframes scan {
+                    0% { top: 0; opacity: 0; }
+                    50% { opacity: 1; }
+                    100% { top: 100%; opacity: 0; }
+                }
+                .animate-scan { animation: scan 4s linear infinite; }
+                .scrollbar-hide::-webkit-scrollbar { display: none; }
+                .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+                .scrollbar-hide iframe { margin-top: 15px !important; min-height: 550px !important; }
+                @media (max-width: 1024px) { .lg\:sticky { position: relative !important; top: 0 !important; } }
+            `}</style>
         </div>
     );
 }

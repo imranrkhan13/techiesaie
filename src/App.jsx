@@ -12,7 +12,6 @@ import ServiceDetail from './pages/serviceDetail';
 import TemplatesPage from './pages/templates';
 import ContactPage from './pages/Bookcall';
 import BookCallPage from './components/bookcall';
-
 export default function App() {
   return (
     <div className="min-h-screen bg-[#0A0A0A] text-white relative z-10">
