@@ -7,6 +7,8 @@ export default function ContactPage() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [focusedField, setFocusedField] = useState(null);
     const [success, setSuccess] = useState(false);
+    const [error, setError] = useState(false);
+
 
     useEffect(() => {
         (async function () {
@@ -24,6 +26,7 @@ export default function ContactPage() {
         e.preventDefault();
         setIsSubmitting(true);
         setSuccess(false);
+        setError(false);
 
         const formData = new FormData(e.target);
 
@@ -37,7 +40,7 @@ export default function ContactPage() {
             });
 
             if (!response.ok) {
-                throw new Error("Network response was not ok");
+                throw new Error("Submission failed");
             }
 
             e.target.reset();
@@ -45,11 +48,12 @@ export default function ContactPage() {
             setSuccess(true);
         } catch (err) {
             console.error(err);
-            alert("Submission failed. Try again.");
+            setError(true);
         } finally {
             setIsSubmitting(false);
         }
     };
+
 
 
     
@@ -159,14 +163,34 @@ export default function ContactPage() {
                                         ${isSubmitting ? 'text-white' : 'text-[#1A1615] group-hover:text-white'}`}>
                                         {isSubmitting ? "TRANSMITTING..." : "INITIALIZE SYNC"}
                                         <Zap size={14} className={`${isSubmitting ? 'animate-pulse' : 'group-hover:rotate-12 transition-transform'}`} fill="currentColor" />
-                                        {success && (
-                                            <p className="text-[#C97A63] text-[10px] tracking-widest text-center">
-                                                Transmission successful.
-                                            </p>
-                                        )}
-
                                     </span>
                                 </button>
+                                {/* SUCCESS MESSAGE */}
+                                {success && (
+                                    <p className="mt-4 text-[#C97A63] text-[10px] tracking-widest text-center uppercase">
+                                        Transmission successful.
+                                    </p>
+                                )}
+
+                                {/* ERROR FALLBACK */}
+                                {error && (
+                                    <p className="mt-4 text-red-400 text-[10px] tracking-widest text-center uppercase leading-relaxed">
+                                        Form failed. <br />
+                                        Contact us at{" "}
+                                        <a
+                                            href="mailto:aietechies@gmail.com"
+                                            className="underline hover:text-red-300"
+                                        >
+                                            aietechies@gmail.com
+                                        </a>{" "}
+                                        <br />
+                                        or{" "}
+                                        <span className="text-[#C97A63] font-bold">
+                                            book a call →
+                                        </span>
+                                    </p>
+                                )}
+
                             </form>
                         </div>
                     </div>
