@@ -17,7 +17,8 @@ export default function Footer() {
         { name: 'FaceBook', url: 'https://www.facebook.com/profile.php?id=61587923631809' },
         { name: 'Bluesky', url: 'https://bsky.app/profile/techiesaie.bsky.social' },
         { name: 'X', url: 'https://x.com/techiesaie' },
-        { name: 'Linkedin', url: 'https://www.linkedin.com/company/techies-aie' }
+        { name: 'Linkedin', url: 'https://www.linkedin.com/company/techies-aie' },
+        { name: 'Pinterest', url: 'https://www.pinterest.com/aietechies/' }
     ];
 
     return (
