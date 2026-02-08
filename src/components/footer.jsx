@@ -1,8 +1,23 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { ArrowRight } from "lucide-react";
 
 export default function Footer() {
     const navigate = useNavigate();
+
+    // Data structure for easy management
+    const navigationLinks = [
+        { name: 'Work', path: '/templates' },
+        { name: 'Services', path: '/services' },
+        { name: 'About', path: '/about' },
+        { name: 'Contact', path: '/book-call' }
+    ];
+
+    const socialLinks = [
+        { name: 'Instagram', url: 'https://instagram.com/yourprofile' },
+        { name: 'LinkedIn', url: 'https://linkedin.com/in/yourprofile' },
+        { name: 'Pinterest', url: 'https://behance.net/yourprofile' }
+    ];
+
     return (
         <footer className="bg-[#4A3835] text-[#FFF5F0] pt-40 pb-12 px-6 lg:px-20 font-['Poppins']">
             <div className="max-w-7xl mx-auto">
@@ -11,25 +26,44 @@ export default function Footer() {
                         <h2 className="text-6xl lg:text-[7rem] font-black uppercase leading-[0.85] tracking-tighter mb-12">
                             Built for <br /><span className="text-[#C97A63]">Excellence.</span>
                         </h2>
+                        {/* Works: Navigates to the booking page */}
                         <button
                             onClick={() => navigate('/book-call')}
-                            className="text-[11px] font-bold tracking-[0.4em] uppercase border-b-2 border-[#C97A63] pb-2 hover:opacity-70 transition-opacity"
+                            className="text-[11px] font-bold tracking-[0.4em] uppercase border-b-2 border-[#C97A63] pb-2 hover:opacity-70 transition-all hover:translate-x-2 flex items-center gap-4 group"
                         >
                             Schedule a Consultation
+                            <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                         </button>
                     </div>
 
                     <div className="grid grid-cols-2 gap-12">
+                        {/* Navigation Section */}
                         <div className="space-y-6">
                             <h4 className="text-[10px] font-bold tracking-[0.3em] uppercase opacity-40">Navigation</h4>
-                            {['Work', 'Services', 'About', 'Contact'].map(link => (
-                                <a key={link} href="#" className="block text-sm font-bold uppercase tracking-widest hover:text-[#C97A63] transition-colors">{link}</a>
+                            {navigationLinks.map(link => (
+                                <button
+                                    key={link.name}
+                                    onClick={() => navigate(link.path)}
+                                    className="block text-sm font-bold uppercase tracking-widest hover:text-[#C97A63] transition-colors text-left"
+                                >
+                                    {link.name}
+                                </button>
                             ))}
                         </div>
+
+                        {/* Socials Section */}
                         <div className="space-y-6">
                             <h4 className="text-[10px] font-bold tracking-[0.3em] uppercase opacity-40">Socials</h4>
-                            {['Instagram', 'LinkedIn', 'Behance'].map(link => (
-                                <a key={link} href="#" className="block text-sm font-bold uppercase tracking-widest hover:text-[#C97A63] transition-colors">{link}</a>
+                            {socialLinks.map(link => (
+                                <a
+                                    key={link.name}
+                                    href={link.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="block text-sm font-bold uppercase tracking-widest hover:text-[#C97A63] transition-colors"
+                                >
+                                    {link.name}
+                                </a>
                             ))}
                         </div>
                     </div>
