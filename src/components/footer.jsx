@@ -13,9 +13,11 @@ export default function Footer() {
     ];
 
     const socialLinks = [
-        { name: 'Instagram', url: 'https://instagram.com/yourprofile' },
-        { name: 'LinkedIn', url: 'https://linkedin.com/in/yourprofile' },
-        { name: 'Pinterest', url: 'https://behance.net/yourprofile' }
+        { name: 'Instagram', url: 'https://www.instagram.com/aietechies/' },
+        { name: 'FaceBook', url: 'https://www.facebook.com/profile.php?id=61587923631809' },
+        { name: 'Bluesky', url: 'https://bsky.app/profile/techiesaie.bsky.social' },
+        { name: 'X', url: 'https://x.com/techiesaie' },
+        { name: 'Linkedin', url: 'https://www.linkedin.com/company/techies-aie' }
     ];
 
     return (
