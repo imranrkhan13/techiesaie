@@ -270,12 +270,12 @@ export default function App() {
                                     Moving beyond simple web design. We build robust, scalable infrastructures that bridge the gap between industrial reliability and artistic soul.
                                 </motion.p>
 
-                                <button className="group relative w-fit overflow-hidden border border-[#4A3835] px-10 py-5">
+                                <a href="/book-call"className="group relative w-fit overflow-hidden border border-[#4A3835] px-10 py-5">
                                     <span className="relative z-10 font-bold uppercase tracking-widest text-sm flex items-center gap-3 group-hover:text-white transition-colors duration-500">
                                         Initialize Project <ArrowUpRight size={18} />
                                     </span>
                                     <div className="absolute inset-0 bg-[#4A3835] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-expo" />
-                                </button>
+                                </a>
                             </div>
                         </div>
 
